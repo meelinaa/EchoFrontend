@@ -1,14 +1,14 @@
 import React from 'react'
-import TrinkenCard from './cards/TrinkenCard';
-import SchritteCard from './cards/SchritteCard';
-import WetterCard from './cards/WetterCard';
-import SchlafCard from './cards/SchlafCard';
-import GedankenCard from './cards/GedankenCard';
-import SportCard from './cards/SportCard';
-import GemuetCard from './cards/GemuetCard';
-import TraumCard from './cards/TraumCard';
+import TrinkenCard from './cards/trinken/TrinkenCard';
+import WetterCard from './cards/wetter/WetterCard';
+import SchlafCard from './cards/schlaf/SchlafCard';
+import GedankenCard from './cards/gedanken/GedankenCard';
+import SportCard from './cards/sport/SportCard';
+import GemuetCard from './cards/gemüt/GemuetCard';
+import TraumCard from './cards/traum/TraumCard';
 
 import './Bento.css';
+import SchritteCard from './cards/schritt/SchritteCard';
 
 export default function Bento() {
   return (

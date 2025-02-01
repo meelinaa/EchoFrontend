@@ -1,0 +1,42 @@
+.traum-top h2, .traum-top p, .traum-mitte p{
+    margin: 0;
+    padding: 0;
+}
+
+.traum-mitte p{
+    font-size: 14px;
+    color: rgb(119, 119, 119);
+}
+
+.traum-mitte{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.traum{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+#textarea{
+    resize: none;
+    font-size: 16px;
+    font-family: "Poppins", serif;
+    border-radius: 16px;
+    border: none;
+    box-shadow: 1px 1px 10px rgb(229, 229, 229);
+    padding: 5px 5px;
+}
+
+
+#traumBewertung{
+    text-align: center;
+    font-size: 20px;
+    font-family: "Poppins", serif;
+    border-radius: 16px;
+    border: none;
+}

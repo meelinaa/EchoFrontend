@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.schlaf-top p b{
+    font-size: 35px;
+}
+
+.schlaf-top p, .schlaf-mitte p{
+    margin: 0;
+    padding: 0;
+}
+
+.schlaf-mitte p{
+    color: rgb(119, 119, 119);
+
+}
+
+#input{
+    height: 50px;
+    width: 150px;
+    text-align: center;
+    font-size: 20px;
+    font-family: "Poppins", serif;
+    border-radius: 16px;
+    border: none;
+    box-shadow: 1px 1px 10px rgb(229, 229, 229);
+    padding: 0px 20px;
+}

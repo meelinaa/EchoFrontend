@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./card.css";
+import "../card.css";
 import "./Wetter.css";
 
 export default function WetterCard() {

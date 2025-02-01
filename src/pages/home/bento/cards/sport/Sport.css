@@ -1,0 +1,29 @@
+.sport-top p, .sport-mitte p{
+    margin: 0;
+    padding: 0;
+}
+
+.sport-top p{
+    color: rgb(119, 119, 119);
+}
+
+.sport-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sport-mitte p b{
+    font-size: 60px;
+}
+
+.sport-mitte{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.sport-mitte p{
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
