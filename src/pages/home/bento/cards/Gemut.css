@@ -1,0 +1,55 @@
+.gemut-links p, .gemut-mitte-links h1, .gemut-mitte-mitte-infos div{
+    margin: 0;
+    padding: 0;
+}
+
+.gemut-top p{
+    color: rgb(119, 119, 119);
+
+}
+
+.gemut-layout{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.gemut-links, .gemut-rechts{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.gemut-rechts-mitte-infos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 4px;
+}
+.gemut-rechts-mitte-infos div{
+    color: rgb(119, 119, 119);
+    font-size: 10px;
+    border: 1px solid rgb(119, 119, 119);
+    border-radius: 50px;
+    padding: 2px 6px;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+
+.gemut-rechts-mitte-infos div:hover{
+    background-color: rgb(172, 172, 225);
+    border: 1px solid rgb(172, 172, 225);
+}
+
+.gemut-rechts-mitte{
+    display: flex;
+    flex-direction: column;
+}
+
+.gemut-rechts-links{
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+

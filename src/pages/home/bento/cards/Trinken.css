@@ -1,0 +1,36 @@
+
+.trinken-mitte{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 8px;
+    width: 100%;
+}
+
+.trinken-mitte h2, .trinken-mitte p, .trinken-bottom p{
+    margin: 0;
+    padding: 0;
+}
+
+.trinken-mitte button{
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    display: flex;
+    border: 1px solid rgb(232, 232, 232);
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: bold;
+    transition: 0.8s;
+}
+
+.trinken-mitte button:hover{
+    background-color: rgb(172, 172, 225);
+}
+
+.trinken-bottom{
+    align-self: center;
+    color: rgb(119, 119, 119);
+}

@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, useNavigate } from "react-router-dom";
+import Header from "./pages/header/header";
+import Home from "./pages/home/Home";
+import Konto from "./pages/konto/Konto";
+import Details from "./pages/details/Details";
+import Start from "./pages/start/Start";
+import { useEffect } from "react";
+
+function StartWithRedirect() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+      const timer = setTimeout(() => {
+          navigate('/home'); 
+      }, 3000);
+
+      return () => clearTimeout(timer); 
+  }, [navigate]);
+
+  return <Start />;
+}
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<StartWithRedirect />} />
+
+      <Route path="/" element={<Header/>}>
+        <Route path="home" element={<Home/>} />
+        <Route path="konto" element={<Konto/>} />
+        <Route path="details" element={<Details/>} />
+      </Route>
+    </>
+  )
+)
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router}/>
   );
 }
 
 export default App;
+

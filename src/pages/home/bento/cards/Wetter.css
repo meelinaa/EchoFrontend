@@ -1,0 +1,17 @@
+.wetter-top p, .wetter-bottom h1{
+    margin: 0;
+    padding: 0;
+}
+
+.wetter-top p{
+    color: rgb(119, 119, 119);
+}
+
+.wetter-mitte{
+    display: flex;
+    justify-content: right;
+}
+
+.wetter-mitte h1{
+    font-size: 70px;
+}

@@ -1,0 +1,11 @@
+:root{
+    --main-color: rgb(172, 172, 225);
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
