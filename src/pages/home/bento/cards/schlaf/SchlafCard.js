@@ -21,9 +21,11 @@ export default function SchlafCard() {
           <div className="schlaf-top">
             <p><b>{zeitAusgabe}</b> h</p>
           </div>
+
           <div className="schlaf-mitte">
             <p>So lange hast du geschlafen</p>
           </div>
+          
           <div className="schritte-bottom">
             <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>+</button>
           </div>
@@ -34,15 +36,17 @@ export default function SchlafCard() {
           <div className="schlaf-top">
             <p>Wie lange hast du heute geschlafen?</p>
           </div>
+
           <div className="schlaf-mitte">
-              <input 
-                type="time" 
-                name="schlafenszeit" 
-                id="input" 
-                value={zeit} 
-                onChange={(event) => setZeit(event.target.value)} 
-              />            
+            <input 
+              type="time" 
+              name="schlafenszeit" 
+              id="input" 
+              value={zeit} 
+              onChange={(event) => setZeit(event.target.value)} 
+            />            
           </div>
+
           <div className="schritte-bottom">
             <button onClick={() => speichernDerDaten(zeit)}>🗸</button>
           </div>

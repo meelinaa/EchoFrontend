@@ -3,12 +3,6 @@ import React, { useEffect, useState } from 'react';
 import '../card.css';
 import './Trinken.css';
 
-import TrinkenFetch from './TrinkenFetch';
-
-
-
-
-
 export default function TrinkenCard() {
   const heute = new Date().toLocaleDateString();
   const LITERINBECHER = 0.240;
@@ -28,6 +22,7 @@ export default function TrinkenCard() {
       setBecher(becher => becher - 1);
     }
   }
+
   useEffect(() => {
     setLiter(becher * LITERINBECHER);
   }, [becher]); 
@@ -51,7 +46,6 @@ export default function TrinkenCard() {
         setError(error.message);
         setLiter(0);
         setBecher(0);
-        console.error("Fehler beim Abrufen der Daten: ", error.message);
       }  
     }
     fetchTrinkenDaten();

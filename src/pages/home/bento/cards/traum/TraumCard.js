@@ -8,7 +8,6 @@ export default function TraumCard() {
     const [traumBewertung, setTraumBewertung] = useState(0);
     const [traum, setTraum] = useState(" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure officiis totam eius quasi, impedit laboriosam, ea minima ut nisi aliquam deleniti debitis sit quia ullam, nostrum rerum possimus sunt magni?");
 
-
     //TextAusgabe Kürzen
     const maxChars = 200;    
     const gekürzterText = traum.length > maxChars 
@@ -39,6 +38,7 @@ export default function TraumCard() {
           <div className="traum-top">
             <h2>Was hast du geträumt?</h2>
           </div>
+          
           <div className="traum-mitte">
             <label htmlFor="traumBewertung">Bewertung: 
               <input 
@@ -52,16 +52,18 @@ export default function TraumCard() {
               />/10
             </label>
                 
-              <textarea 
-                name="traum" 
-                id="textarea" 
-                cols="27" 
-                rows="9" 
-                value={traum}  
-                onChange={(event) => setTraum(event.target.value)}></textarea>
+            <textarea 
+              name="traum" 
+              id="textarea" 
+              cols="27" 
+              rows="9" 
+              value={traum}  
+              onChange={(event) => setTraum(event.target.value)}>
+            </textarea>
           </div>
+
           <div className="schritte-bottom">
-          <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>🗸</button>
+            <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>🗸</button>
           </div>
         </>
       )}

@@ -2,5 +2,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 

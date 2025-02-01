@@ -79,4 +79,5 @@ main{
    align-items: center; 
    align-self: center;
    width: 1200px;
+   justify-content: center;
 }

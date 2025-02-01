@@ -12,17 +12,17 @@ export default function SchritteCard() {
   const [km, setKm] = useState(0);
   const [meterGroßgenug, setMeterGroßgenug] = useState(false);
 
-  // GET
-  const [körpergröße, setKörpergröße] = useState(1.77);
+  // GET ALLGEMEINE DATEN
+  const [körpergröße, setKörpergröße] = useState(177);
   const [geschlecht, setGeschlecht] = useState("weiblich");
 
   // Schrittlänge berechnen
   useEffect(() => {
     if (geschlecht === "weiblich") {
-      setSchrittlänge(0.413 * körpergröße);
+      setSchrittlänge(0.413 * (körpergröße/100));
     }
     else{
-      setSchrittlänge(0.415 * körpergröße);
+      setSchrittlänge(0.415 * (körpergröße/100));
     }
   },[])
 
@@ -39,21 +39,21 @@ export default function SchritteCard() {
       setMeterGroßgenug(false);
     }
   },[meter])
-
   
   return (
     <div className="card sport-layout">
       {!btnÖffnenKlick && (
         <>
         <div className="schritte-top">
-            <p>Heute gelaufen</p>
+          <p>Heute gelaufen</p>
         </div>
-        <div className="schritte-mitte">
-            <p><b>{schritte}</b> Schritte</p>
-            {!meterGroßgenug && (<p><b>{meter}</b> Meter</p>)}
-            {meterGroßgenug && (<p><b>{km}</b> Kilometer</p>)}
 
+        <div className="schritte-mitte">
+          <p><b>{schritte}</b> Schritte</p>
+          {!meterGroßgenug && (<p><b>{meter}</b> Meter</p>)}
+          {meterGroßgenug && (<p><b>{km}</b> Kilometer</p>)}
         </div>
+
         <div className="schritte-bottom">
           <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>+</button>
         </div>
@@ -62,24 +62,25 @@ export default function SchritteCard() {
 
       {btnÖffnenKlick && (
         <>
-        <div className="schritte-top">
+          <div className="schritte-top">
             <p>wie viele Schritte bist du heute gelaufen?</p>
-        </div>
-        <div className="schritte-mitte">
-          <input 
-            type="number" 
-            name="schritteHeute" 
-            id="input" 
-            value={schritte} 
-            onChange={(event) => setSchritte(event.target.value)} 
-          /> 
-        </div>
-        <div className="schritte-bottom">
-          <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>🗸</button>
-        </div>
+          </div>
+
+          <div className="schritte-mitte">
+            <input 
+              type="number" 
+              name="schritteHeute" 
+              id="input" 
+              value={schritte} 
+              onChange={(event) => setSchritte(event.target.value)} 
+            /> 
+          </div>
+
+          <div className="schritte-bottom">
+            <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>🗸</button>
+          </div>
         </>
       )}
-        
     </div>
   )
 }
