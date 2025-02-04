@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Echo - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📌 Überblick  
 
-## Available Scripts
+**Echo** ist ein interaktiver **Health-Tracker**, der Nutzern hilft, ihre mentale und körperliche Gesundheit zu dokumentieren. Das **Frontend** wurde mit **React** entwickelt und bietet eine moderne, intuitive Benutzeroberfläche im **Bento-Grid-Design**. Die erste Version der Eingabefelder wurde bereits als Bento Cards umgesetzt, jedoch noch nicht mit dem **Backend** verbunden.  
 
-In the project directory, you can run:
+## 🎯 Funktionsweise  
 
-### `npm start`
+Das Frontend ermöglicht die tägliche Erfassung von Gesundheitsdaten in verschiedenen Kategorien:  
+- **Mentale Daten**: Stimmung, Gedanken, Träume  
+- **Körperliche Daten**: Trinkmenge, Schritte, Schlafdauer, Sportaktivitäten  
+- **Allgemeine Daten**: Größe, Gewicht, Alter  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Diese Informationen sollen später mit dem Backend verknüpft und gespeichert werden. Der Fokus liegt darauf, die **Benutzerfreundlichkeit** durch eine klare und moderne UI zu maximieren.  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🔮 Nächste Schritte  
 
-### `npm test`
+- **API-Anbindung**: Verbindung der Bentos mit dem Echo-Backend  
+- **Datenvalidierung**: Client-seitige Validierung der Nutzereingaben  
+- **Dynamische Datenanzeige**: Automatische Aktualisierung der Daten  
+- **Optimierung der Benutzererfahrung**: Bessere Ladeanimationen, Dark Mode  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔥 Technologie-Stack  
 
-### `npm run build`
+- **React** – UI-Entwicklung mit Komponenten-basierter Architektur  
+- **JavaScript ES6+** – Logik und Interaktivität  
+- **CSS** – Styling und Design  
+- **Axios** – Für die spätere API-Kommunikation mit dem Backend  
+- **Docker** – Containerisierung (später für Deployment geplant)  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Setup & Installation  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Projekt klonen**  
+   ```sh
+   git clone https://github.com/meelinaa/EchoFrontend.git
+   cd EchoFrontend 
+   ```
+2. **Node-Module installieren**  
+   ```sh
+   npm install
+   ```
+3. **React-App starten**  
+   ```sh
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📌 Aktueller Status  
 
-### `npm run eject`
+✅ **Bento Grid mit Input-Feldern erstellt**  
+❌ **Noch keine API-Anbindung**  
+❌ **Noch keine Speicherung der Eingaben**  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📷 Screenshots  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Bento Grid mit Eingabefeldern:**  
+   <img src="https://github.com/meelinaa/Echo/blob/main/README-images/bento1.png" alt="Bento Grid mit Inputs" style="width: 100%; display: block;">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Bearbeitungsmodus für die jeweiligen Bentos:**  
+   <img src="https://github.com/meelinaa/Echo/blob/main/README-images/bento2.png" alt="Bearbeitungsmodus" style="width: 100%; display: block;">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🌐 Lizenz & Kontakt  
 
-## Learn More
+Dieses Projekt steht unter der [MIT-Lizenz](LICENSE).  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📧 Kontakt: [E-Mail](mailto:melinakiefer@hotmail.de) | [GitHub](https://github.com/meelinaa)  

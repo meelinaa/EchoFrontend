@@ -20,7 +20,7 @@ export default function Header() {
                 </div>
                 <div className="header-mitte">
                     <NavLink to="/home">Home</NavLink>
-                    <NavLink to="/details">Details</NavLink>
+                    <NavLink to="/analyse">Analyse</NavLink>
                 </div>
                 <div className="header-rechts">
                     <img src={Konto} alt="konto" id="header-img" onClick={() => navigate("/konto")} />

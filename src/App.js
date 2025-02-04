@@ -2,9 +2,9 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, u
 import Header from "./pages/header/header";
 import Home from "./pages/home/Home";
 import Konto from "./pages/konto/Konto";
-import Details from "./pages/details/Details";
 import Start from "./pages/start/Start";
 import { useEffect } from "react";
+import DatenAnalyse from "./pages/analyse/DatenAnalyse";
 
 function StartWithRedirect() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Header/>}>
         <Route path="home" element={<Home/>} />
         <Route path="konto" element={<Konto/>} />
-        <Route path="details" element={<Details/>} />
+        <Route path="analyse" element={<DatenAnalyse/>} />
       </Route>
     </>
   )
