@@ -3,14 +3,38 @@ import React, { useState } from 'react'
 import '../card.css';
 import './Gedanken.css';
 
+import GedankenFetch from './GedankenFetch';
+
 export default function GedankenCard() {
+  const heute = new Date().toLocaleDateString();
+  const gedankenFetch = new GedankenFetch();
+
   const [btnÖffnenKlick, setBtnÖffnenKlick] = useState(false);
   const [gedanken, setGedanken] = useState("Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus consequatur et ipsa magni, modi consectetur reiciendis velit nam, assumenda autem ipsam neque voluptatum minima similique quam quos eum ullam necessitatibus?");
+
+  const { data, error, isLoading } = useQuery(["daten", heute], () => schritteFetch.getSchritteDaten(heute), {refetchOnWindowFocus: false});
+    useEffect(() => {
+      if (data) {
+        setGedanken(data.gedanken || "Deine Gedanken");
+      }
+  }, [data]); 
+
+  async function setDaten() {
+    setBtnÖffnenKlick(btn => !btn);
+    try {
+      await gedankenFetch.setSchlafDaten(heute, zeit);
+    } catch (error) {
+      window.alert("Speichern hat nicht funktioniert");
+    }
+  }
 
   const maxChars = 200;    
   const gekürzterText = gedanken.length > maxChars 
     ? gedanken.substring(0, maxChars) + "..." 
     : gedanken;
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Fehler: {error.message}</p>;
 
   return (
     <div className="card traum">
@@ -25,7 +49,7 @@ export default function GedankenCard() {
           
           </div>
           <div className="schritte-bottom">
-            <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>+</button>
+            <button onClick={() => setBtnÖffnenKlick(true)}>+</button>
           </div>
         </>
       )}
@@ -48,7 +72,7 @@ export default function GedankenCard() {
           </div>
 
           <div className="schritte-bottom">
-            <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>🗸</button>
+            <button onClick={() => setDaten()}>🗸</button>
           </div>
         </>
       )}

@@ -1,28 +1,31 @@
-class TrinkenFetch {
+class KontoFetch {
 
-    async getTrinkenDaten(heute){
-        const response = await fetch(`http://localhost:8080/trinken/${heute}`);
+    async getAllgemeineDaten(){
+        const response = await fetch(`http://localhost:8080/allgemein/alles`);
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Daten: ${response.statusText}`);
         }
         return await response.json();
     }
 
-    async setTrinkenDaten(datum, liter, becher) {
-        if (!datum || !liter || !becher) {
+    async setAllgemeineDaten(name, größe, alter, geschlecht, bmi, gewicht){
+        if (!name || !größe || !alter || !geschlecht || !bmi || !gewicht) {
             throw new Error('Fehler: ungültiger oder fehlender Parameter');
         }
         try {
-            const response = await fetch(`http://localhost:8080/trinken/hinzufügen`, {
+            const response = await fetch(`http://localhost:8080/allgemein/hinzufügen`, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    datum: datum,
-                    liter: liter,
-                    becher: becher,
+                    name: name,
+                    größe: größe,
+                    alter: alter,
+                    geschlecht: geschlecht,
+                    bmi: bmi,
+                    gewicht: gewicht
                 }),
             });
     

@@ -1,19 +1,19 @@
-class TrinkenFetch {
+class SportFetch {
 
-    async getTrinkenDaten(heute){
-        const response = await fetch(`http://localhost:8080/trinken/${heute}`);
+    async getSportDaten(heute){
+        const response = await fetch(`http://localhost:8080/sport/${heute}`);
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Daten: ${response.statusText}`);
         }
         return await response.json();
     }
-
-    async setTrinkenDaten(datum, liter, becher) {
-        if (!datum || !liter || !becher) {
+    
+    async setSportDaten(datum, trainingsDauer, sportart) {
+        if (!datum || !trainingsDauer || !sportart) {
             throw new Error('Fehler: ungültiger oder fehlender Parameter');
         }
         try {
-            const response = await fetch(`http://localhost:8080/trinken/hinzufügen`, {
+            const response = await fetch(`http://localhost:8080/sport/hinzufügen`, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -21,8 +21,8 @@ class TrinkenFetch {
                 },
                 body: JSON.stringify({
                     datum: datum,
-                    liter: liter,
-                    becher: becher,
+                    trainingsDauer: trainingsDauer,
+                    sportart: sportart,
                 }),
             });
     

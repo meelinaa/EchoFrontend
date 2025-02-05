@@ -1,19 +1,19 @@
-class TrinkenFetch {
-
-    async getTrinkenDaten(heute){
-        const response = await fetch(`http://localhost:8080/trinken/${heute}`);
+class GedankenFetch {
+    
+    async getGedankenDaten(heute){
+        const response = await fetch(`http://localhost:8080/gedanken/${heute}`);
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Daten: ${response.statusText}`);
         }
         return await response.json();
     }
-
-    async setTrinkenDaten(datum, liter, becher) {
-        if (!datum || !liter || !becher) {
+    
+    async setGedankenDaten(datum, gedanken){
+        if (!datum || !gedanken) {
             throw new Error('Fehler: ungültiger oder fehlender Parameter');
         }
         try {
-            const response = await fetch(`http://localhost:8080/trinken/hinzufügen`, {
+            const response = await fetch(`http://localhost:8080/gedanken/hinzufügen`, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -21,8 +21,7 @@ class TrinkenFetch {
                 },
                 body: JSON.stringify({
                     datum: datum,
-                    liter: liter,
-                    becher: becher,
+                    gedanken: gedanken,
                 }),
             });
     

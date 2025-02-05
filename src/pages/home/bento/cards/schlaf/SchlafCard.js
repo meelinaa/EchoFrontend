@@ -1,25 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useQuery } from "react-query";
 
 import '../card.css';
 import './Schlaf.css';
 
+import SchlafFetch from './SchlafFetch';
+
 export default function SchlafCard() {
+  const heute = new Date().toLocaleDateString();
+  const schlafFetch = new SchlafFetch();
 
   const [btnÖffnenKlick, setBtnÖffnenKlick] = useState(false);
-  const [zeitAusgabe, setZeitAusgabe] = useState("00:00");
   const [zeit, setZeit] = useState("00:00");
 
-  function speichernDerDaten(zeit){
-    setZeitAusgabe(zeit);
-    setBtnÖffnenKlick(btn => !btn)
+  const { data, error, isLoading } = useQuery(["daten", heute], () => schlafFetch.getSchlafDaten(heute), {refetchOnWindowFocus: false});
+
+  useEffect(() => {
+    if (data) {
+      setZeit(data.schlafenszeit || "00:00");
+    }
+  }, [data]); 
+  
+  async function setDaten() {
+    setBtnÖffnenKlick(btn => !btn);
+    try {
+      await schlafFetch.setSchlafDaten(heute, zeit);
+    } catch (error) {
+      window.alert("Speichern hat nicht funktioniert");
+    }
   }
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Fehler: {error.message}</p>;
 
   return (
     <div className="card traum">
       {!btnÖffnenKlick && (
         <>
           <div className="schlaf-top">
-            <p><b>{zeitAusgabe}</b> h</p>
+            <p><b>{zeit}</b> h</p>
           </div>
 
           <div className="schlaf-mitte">
@@ -48,7 +67,7 @@ export default function SchlafCard() {
           </div>
 
           <div className="schritte-bottom">
-            <button onClick={() => speichernDerDaten(zeit)}>🗸</button>
+            <button onClick={() => setDaten()}>🗸</button>
           </div>
         </>
       )}

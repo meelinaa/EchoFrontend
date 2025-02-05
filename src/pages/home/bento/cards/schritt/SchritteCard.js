@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from "react-query";
 
 import '../card.css';
 import './Schritte.css';
 
+import schritteFetch from './SchritteFetch';
+import allgemeinFallgemeinFetchetch from '../../../../konto/KontoFetch';
+
 export default function SchritteCard() {
+  const heute = new Date().toLocaleDateString();
+  const schritteFetch = new SchritteFetch();
+  const allgemeinFetch = new allgemeinFetch();
+    
   const [btnÖffnenKlick, setBtnÖffnenKlick] = useState(false);
   
   const [schritte, setSchritte] = useState(0);
@@ -13,12 +21,28 @@ export default function SchritteCard() {
   const [meterGroßgenug, setMeterGroßgenug] = useState(false);
 
   // GET ALLGEMEINE DATEN
+  const { allgemein, allgemeinError, isLoadingAllgemein } = useQuery(["daten", heute], () => allgemeinFetch.getAllgemeineDaten(), {refetchOnWindowFocus: false});
   const [körpergröße, setKörpergröße] = useState(177);
-  const [geschlecht, setGeschlecht] = useState("weiblich");
+  const [geschlecht, setGeschlecht] = useState("Frau");
+  useEffect(() => {
+    if (allgemein) {
+      setKörpergröße(allgemein.größe || 177);
+      setGeschlecht(allgemein.geschlecht || "Frau");
+    }
+  }, [allgemein]); 
+
+  //FETCH
+  const { data, error, isLoading } = useQuery(["daten", heute], () => schritteFetch.getSchritteDaten(heute), {refetchOnWindowFocus: false});
+  useEffect(() => {
+    if (data) {
+      setSchritte(data.schritte || 0);
+      setSchrittlänge(data.meter || 0);
+    }
+  }, [data]); 
 
   // Schrittlänge berechnen
   useEffect(() => {
-    if (geschlecht === "weiblich") {
+    if (geschlecht === "Frau") {
       setSchrittlänge(0.413 * (körpergröße/100));
     }
     else{
@@ -39,6 +63,9 @@ export default function SchritteCard() {
       setMeterGroßgenug(false);
     }
   },[meter])
+
+  if (isLoading || isLoadingAllgemein) return <p>Loading...</p>;
+  if (error || allgemeinError) return <p>Fehler: {error.message || allgemeinError.message}</p>;
   
   return (
     <div className="card sport-layout">

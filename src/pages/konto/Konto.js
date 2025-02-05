@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Konto.css';
 
+import KontoFetch from './KontoFetch';
 
 export default function Konto() {
+  const kontoFetch = new KontoFetch();
+
   const [name, setName] = useState("Gast");
   const [größe, setGröße] = useState(177);
   const [alter, setAlter] = useState(23);
@@ -12,8 +15,34 @@ export default function Konto() {
 
   const [bearbeitenIsClicked, setBearbeitenIsClicked] = useState(false);
 
+  const { data, error, isLoading } = useQuery(["daten", heute], () => kontoFetch.getAllgemeineDaten(heute), {refetchOnWindowFocus: false});
+  
+  useEffect(() => {
+    if (data) {
+      setName(data.name || "Gast");
+      setGröße(data.größe || 177);
+      setAlter(data.alter || 23);
+      setGeschlecht(data.geschlecht || "Frau");
+      setBmi(data.bmi || 26);
+      setGewicht(data.gewicht || 65);
+    }
+  }, [data]); 
 
+  async function setDaten() {
+    setBtnÖffnenKlick(btn => !btn);
+    try {
+      await kontoFetch.setAllgemeineDaten(name, größe, alter, geschlecht, bmi, gewicht);
+    } catch (error) {
+      window.alert("Speichern hat nicht funktioniert");
+    }
+  }
 
+  useEffect(() => {
+    setBmi((gewicht/größe).toFixed(2));
+  },[größe || gewicht])
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Fehler: {error.message}</p>;
 
   return (
     <div className="konto-layout">
@@ -48,6 +77,10 @@ export default function Konto() {
                 <td>{gewicht} kg</td>
               </tr>
               <tr>
+                <td>Bmi: </td>
+                <td>{bmi}</td>
+              </tr>
+              <tr>
                 <td>Geschlecht: </td>
                 <td>{geschlecht}</td>
               </tr>
@@ -77,7 +110,7 @@ export default function Konto() {
               </label>
             </form>
             <div className="bearbeiten-btn">
-              <button onClick={() => setBearbeitenIsClicked(false)}>Speichern</button>
+              <button onClick={() => setDaten()}>Speichern</button>
             </div>
           </div>
         </>

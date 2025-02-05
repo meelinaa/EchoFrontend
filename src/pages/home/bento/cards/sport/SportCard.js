@@ -1,12 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useQuery } from "react-query";
 
 import '../card.css';
 import './Sport.css';
 
+import SportFetch from './SportFetch';
+
 export default function SportCard() {
-    const [btnÖffnenKlick, setBtnÖffnenKlick] = useState(false);
-    const [zeit, setZeit] = useState("00:00");
-    const [sportart, setSportart] = useState("Fahrradfahren");
+  const heute = new Date().toLocaleDateString();
+  const sportFetch = new SportFetch();
+
+  const [btnÖffnenKlick, setBtnÖffnenKlick] = useState(false);
+  const [zeit, setZeit] = useState("00:00");
+  const [sportart, setSportart] = useState("Fahrradfahren");
+  
+  const { data, error, isLoading } = useQuery(["daten", heute], () => sportFetch.getSportDaten(heute), {refetchOnWindowFocus: false});
+    
+  useEffect(() => {
+    if (data) {
+      setSportart(data.sportart || "Fahrradfahren");
+      setZeit(data.trainingsDauer || "00:00");
+    }
+  }, [data]); 
+
+  async function setDaten(){
+    setBtnÖffnenKlick(btn => !btn);
+    try {
+      await sportFetch.setSportDaten(heute, zeit, sportart);  
+    } catch (error){
+      window.alert("speichern hat nicht funktioniert");
+    }
+  }
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Fehler: {error.message}</p>;
 
   return (
     <div className="card sport-layout">
@@ -48,7 +75,7 @@ export default function SportCard() {
           </div>
 
           <div className="schritte-bottom">
-            <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>🗸</button>
+            <button onClick={() => setDaten()}>🗸</button>
           </div>
         </>
       )}
