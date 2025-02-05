@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../card.css';
 import './Gedanken.css';
@@ -12,7 +12,7 @@ export default function GedankenCard() {
   const [btnÖffnenKlick, setBtnÖffnenKlick] = useState(false);
   const [gedanken, setGedanken] = useState("Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus consequatur et ipsa magni, modi consectetur reiciendis velit nam, assumenda autem ipsam neque voluptatum minima similique quam quos eum ullam necessitatibus?");
 
-  const { data, error, isLoading } = useQuery(["daten", heute], () => schritteFetch.getSchritteDaten(heute), {refetchOnWindowFocus: false});
+  const { data, error, isLoading } = useQuery(["daten", heute], () => gedankenFetch.getGedankenDaten(heute), {refetchOnWindowFocus: false});
     useEffect(() => {
       if (data) {
         setGedanken(data.gedanken || "Deine Gedanken");
@@ -22,7 +22,7 @@ export default function GedankenCard() {
   async function setDaten() {
     setBtnÖffnenKlick(btn => !btn);
     try {
-      await gedankenFetch.setSchlafDaten(heute, zeit);
+      await gedankenFetch.setGedankenDaten(heute, gedanken);
     } catch (error) {
       window.alert("Speichern hat nicht funktioniert");
     }
