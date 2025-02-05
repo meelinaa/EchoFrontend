@@ -4,13 +4,13 @@ import { useQuery } from "react-query";
 import '../card.css';
 import './Schritte.css';
 
-import schritteFetch from './SchritteFetch';
-import allgemeinFallgemeinFetchetch from '../../../../konto/KontoFetch';
+import SchritteFetch from './SchritteFetch';
+import KontoFetch from '../../../../konto/KontoFetch';
 
 export default function SchritteCard() {
   const heute = new Date().toLocaleDateString();
   const schritteFetch = new SchritteFetch();
-  const allgemeinFetch = new allgemeinFetch();
+  const kontoFetch = new KontoFetch();
     
   const [btnÖffnenKlick, setBtnÖffnenKlick] = useState(false);
   
@@ -21,7 +21,7 @@ export default function SchritteCard() {
   const [meterGroßgenug, setMeterGroßgenug] = useState(false);
 
   // GET ALLGEMEINE DATEN
-  const { allgemein, allgemeinError, isLoadingAllgemein } = useQuery(["daten", heute], () => allgemeinFetch.getAllgemeineDaten(), {refetchOnWindowFocus: false});
+  const { allgemein, allgemeinError, isLoadingAllgemein } = useQuery(["daten", heute], () => kontoFetch.getAllgemeineDaten(), {refetchOnWindowFocus: false});
   const [körpergröße, setKörpergröße] = useState(177);
   const [geschlecht, setGeschlecht] = useState("Frau");
   useEffect(() => {
@@ -64,6 +64,15 @@ export default function SchritteCard() {
     }
   },[meter])
 
+  async function setDaten() {
+    setBtnÖffnenKlick(btn => !btn);
+    try {
+      await kontoFetch.setAllgemeineDaten(name, größe, alter, geschlecht, bmi, gewicht);
+    } catch (error) {
+      window.alert("Speichern hat nicht funktioniert");
+    }
+  }
+
   if (isLoading || isLoadingAllgemein) return <p>Loading...</p>;
   if (error || allgemeinError) return <p>Fehler: {error.message || allgemeinError.message}</p>;
   
@@ -104,7 +113,7 @@ export default function SchritteCard() {
           </div>
 
           <div className="schritte-bottom">
-            <button onClick={() => setBtnÖffnenKlick(btn => !btn)}>🗸</button>
+            <button onClick={() => setDaten()}>🗸</button>
           </div>
         </>
       )}
