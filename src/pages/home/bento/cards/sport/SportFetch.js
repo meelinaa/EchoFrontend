@@ -14,7 +14,7 @@ class SportFetch {
         }
         try {
             const response = await fetch(`http://localhost:8080/sport/hinzufügen`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -39,3 +39,5 @@ class SportFetch {
         }
     }
 }
+
+export default SportFetch;

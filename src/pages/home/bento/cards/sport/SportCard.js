@@ -27,13 +27,12 @@ export default function SportCard() {
     setBtnÖffnenKlick(btn => !btn);
     try {
       await sportFetch.setSportDaten(heute, zeit, sportart);  
-    } catch (error){
+    } catch{
       window.alert("speichern hat nicht funktioniert");
     }
   }
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Fehler: {error.message}</p>;
 
   return (
     <div className="card sport-layout">

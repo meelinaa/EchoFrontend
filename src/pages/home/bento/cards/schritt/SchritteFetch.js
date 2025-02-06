@@ -1,6 +1,6 @@
 class SchritteFetch {
 
-    async getSchlafDaten(heute){
+    async getSchritteDaten(heute){
         const response = await fetch(`http://localhost:8080/schritte/${heute}`);
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Daten: ${response.statusText}`);
@@ -8,13 +8,13 @@ class SchritteFetch {
         return await response.json();
     }
 
-    async setSchlafDaten(datum, schritte, meter) {
+    async setSchritteDaten(datum, schritte, meter) {
         if (!datum || !schritte || !meter) {
             throw new Error('Fehler: ungültiger oder fehlender Parameter');
         }
         try {
             const response = await fetch(`http://localhost:8080/schritte/hinzufügen`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -39,3 +39,5 @@ class SchritteFetch {
         }
     }
 }
+
+export default SchritteFetch;

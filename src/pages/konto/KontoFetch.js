@@ -14,7 +14,7 @@ class KontoFetch {
         }
         try {
             const response = await fetch(`http://localhost:8080/allgemein/hinzufügen`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -42,3 +42,5 @@ class KontoFetch {
         }
     }
 }
+
+export default KontoFetch;

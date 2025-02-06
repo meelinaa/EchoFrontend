@@ -39,7 +39,6 @@ export default function TraumCard() {
     : traum;
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Fehler: {error.message}</p>;
 
   return (
     <div className="card traum">

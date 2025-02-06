@@ -14,7 +14,7 @@ class GedankenFetch {
         }
         try {
             const response = await fetch(`http://localhost:8080/gedanken/hinzufügen`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -38,3 +38,5 @@ class GedankenFetch {
         }
     }
 }
+
+export default GedankenFetch;

@@ -25,6 +25,7 @@ export default function TrinkenCard() {
 // BTN ACTION
   function increaseLiter() {
     setBecher(prevBecher => prevBecher + 1);
+    saveData();
   }
 
   function decreaseLiter() {
@@ -36,16 +37,15 @@ export default function TrinkenCard() {
   }, [becher]);
 
 //SET DATA
-  useEffect(() => {
+  async function saveData() {
     try {
       trinkenFetch.setTrinkenDaten(heute, liter, becher);  
     } catch (error){
       window.alert("speichern hat nicht funktioniert");
     }
-  },[becher])
+  }
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Fehler: {error.message}</p>;
 
   return (
     <div className="card">

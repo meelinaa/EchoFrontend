@@ -14,7 +14,7 @@ class TrinkenFetch {
         }
         try {
             const response = await fetch(`http://localhost:8080/trinken/hinzufügen`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -39,3 +39,5 @@ class TrinkenFetch {
         }
     }
 }
+
+export default TrinkenFetch;

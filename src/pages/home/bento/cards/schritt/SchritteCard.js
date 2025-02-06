@@ -67,14 +67,13 @@ export default function SchritteCard() {
   async function setDaten() {
     setBtnÖffnenKlick(btn => !btn);
     try {
-      await kontoFetch.setAllgemeineDaten(name, größe, alter, geschlecht, bmi, gewicht);
+      await schritteFetch.setSchritteDaten(heute, schritte, meter);
     } catch (error) {
       window.alert("Speichern hat nicht funktioniert");
     }
   }
 
   if (isLoading || isLoadingAllgemein) return <p>Loading...</p>;
-  if (error || allgemeinError) return <p>Fehler: {error.message || allgemeinError.message}</p>;
   
   return (
     <div className="card sport-layout">
