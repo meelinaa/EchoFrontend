@@ -45,9 +45,13 @@ Diese Informationen sollen später mit dem Backend verknüpft und gespeichert we
 
 ## 📌 Aktueller Status  
 
-✅ **Bento Grid mit Input-Feldern erstellt**  
-❌ **Noch keine API-Anbindung**  
-❌ **Noch keine Speicherung der Eingaben**  
+- ✅ **Bento Grid mit Input-Feldern erstellt**  
+- ✅ **API-Anbindung**  
+- ✅ **Speicherung der Eingaben**  
+- ❌ **Testing**  
+- ❌ **Übersicht für die letzten Eingaben und Analysen**  
+
+
 
 ## 📷 Screenshots  
 

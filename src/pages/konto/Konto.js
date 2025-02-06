@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useQuery } from "react-query";
+
 import './Konto.css';
 
 import KontoFetch from './KontoFetch';
@@ -15,7 +17,7 @@ export default function Konto() {
 
   const [bearbeitenIsClicked, setBearbeitenIsClicked] = useState(false);
 
-  const { data, error, isLoading } = useQuery(["daten", heute], () => kontoFetch.getAllgemeineDaten(heute), {refetchOnWindowFocus: false});
+  const { data, error, isLoading } = useQuery(["daten"], () => kontoFetch.getAllgemeineDaten(), {refetchOnWindowFocus: false});
   
   useEffect(() => {
     if (data) {
@@ -29,7 +31,7 @@ export default function Konto() {
   }, [data]); 
 
   async function setDaten() {
-    setBtnÖffnenKlick(btn => !btn);
+    setBearbeitenIsClicked(false);
     try {
       await kontoFetch.setAllgemeineDaten(name, größe, alter, geschlecht, bmi, gewicht);
     } catch (error) {
