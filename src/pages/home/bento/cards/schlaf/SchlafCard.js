@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useQuery } from "react-query";
 
 import '../card.css';
 import './Schlaf.css';
@@ -13,13 +12,21 @@ export default function SchlafCard() {
   const [btnÖffnenKlick, setBtnÖffnenKlick] = useState(false);
   const [zeit, setZeit] = useState("00:00");
 
-  const { data, error, isLoading } = useQuery(["daten", heute], () => schlafFetch.getSchlafDaten(heute), {refetchOnWindowFocus: false});
-
   useEffect(() => {
-    if (data) {
-      setZeit(data.schlafenszeit || "00:00");
-    }
-  }, [data]); 
+    const fetchData = async () => {
+      try {
+        const data = await schlafFetch.getSchlafDaten(heute);
+        setZeit(data.schlafenszeit || 0);
+      } catch (error) {
+        console.error("Fehler beim Abrufen der Schlaf-Daten:", error); 
+      }
+    };
+  
+    fetchData(); 
+  }, [heute]); 
+  
+
+  
   
   async function setDaten() {
     setBtnÖffnenKlick(btn => !btn);
@@ -30,7 +37,7 @@ export default function SchlafCard() {
     }
   }
 
-  if (isLoading) return <p>Loading...</p>;
+  // if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="card traum">

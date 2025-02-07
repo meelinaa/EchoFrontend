@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from "react-query";
 
 import '../card.css';
 import './Schritte.css';
@@ -21,24 +20,26 @@ export default function SchritteCard() {
   const [meterGroßgenug, setMeterGroßgenug] = useState(false);
 
   // GET ALLGEMEINE DATEN
-  const { allgemein, allgemeinError, isLoadingAllgemein } = useQuery(["daten", heute], () => kontoFetch.getAllgemeineDaten(), {refetchOnWindowFocus: false});
   const [körpergröße, setKörpergröße] = useState(177);
   const [geschlecht, setGeschlecht] = useState("Frau");
+  
   useEffect(() => {
-    if (allgemein) {
-      setKörpergröße(allgemein.größe || 177);
-      setGeschlecht(allgemein.geschlecht || "Frau");
-    }
-  }, [allgemein]); 
+    const fetchData = async () => {
+      try {
+        const data = await schritteFetch.getSchritteDaten(heute);
+        setSchritte(data.schritte || 0);
+        setMeter(data.meter || 0); 
 
-  //FETCH
-  const { data, error, isLoading } = useQuery(["daten", heute], () => schritteFetch.getSchritteDaten(heute), {refetchOnWindowFocus: false});
-  useEffect(() => {
-    if (data) {
-      setSchritte(data.schritte || 0);
-      setSchrittlänge(data.meter || 0);
-    }
-  }, [data]); 
+        const allgemein = await kontoFetch.getAllgemeineDaten();
+        setGeschlecht(allgemein.geschlecht || "Frau");
+        setKörpergröße(allgemein.körpergröße || 177);
+      } catch (error) {
+        console.error("Fehler beim Abrufen der Schritte-Daten:", error);
+      }
+    };
+  
+    fetchData(); 
+  }, [heute]); 
 
   // Schrittlänge berechnen
   useEffect(() => {
@@ -73,7 +74,7 @@ export default function SchritteCard() {
     }
   }
 
-  if (isLoading || isLoadingAllgemein) return <p>Loading...</p>;
+  // if (isLoading || isLoadingAllgemein) return <p>Loading...</p>;
   
   return (
     <div className="card sport-layout">

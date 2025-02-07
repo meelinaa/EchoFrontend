@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from "react-query";
 
 import '../card.css';
 import './Trinken.css';
@@ -12,15 +11,22 @@ export default function TrinkenCard() {
 
   const [becher, setBecher] = useState(0);
   const [liter, setLiter] = useState(0);
-
-  const { data, error, isLoading } = useQuery(["daten", heute], () => trinkenFetch.getTrinkenDaten(heute), {refetchOnWindowFocus: false});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (data) {
-      setBecher(data.becher || 0);
-      setLiter(data.liter || 0);
-    }
-  }, [data]); 
+    const fetchData = async () => {
+      try {
+        const data = await trinkenFetch.getTrinkenDaten(heute);
+        setBecher(data.becher || 0);
+        setLiter(data.liter || 0); 
+      } catch (error) {
+        console.error("Fehler beim Abrufen der Trinken-Daten:", error); 
+      }
+    };
+  
+    fetchData(); 
+  }, [heute]); 
+
 
 // BTN ACTION
   function increaseLiter() {
@@ -55,7 +61,7 @@ export default function TrinkenCard() {
         <button onClick={decreaseLiter}>-</button>
       </div>
       <div className="trinken-bottom">
-        <p>Insgesamt {liter.toFixed(2)} Liter</p>
+        <p>Insgesamt {liter} Liter</p>
       </div>
     </div>
   );

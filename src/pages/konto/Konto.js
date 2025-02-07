@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useQuery } from "react-query";
 
 import './Konto.css';
 
@@ -17,18 +16,23 @@ export default function Konto() {
 
   const [bearbeitenIsClicked, setBearbeitenIsClicked] = useState(false);
 
-  const { data, error, isLoading } = useQuery(["daten"], () => kontoFetch.getAllgemeineDaten(), {refetchOnWindowFocus: false});
-  
   useEffect(() => {
-    if (data) {
-      setName(data.name || "Gast");
-      setGröße(data.größe || 177);
-      setAlter(data.alter || 23);
-      setGeschlecht(data.geschlecht || "Frau");
-      setBmi(data.bmi || 26);
-      setGewicht(data.gewicht || 65);
-    }
-  }, [data]); 
+      const fetchData = async () => {
+        try {
+          const data = await kontoFetch.getAllgemeineDaten();
+          setName(data.name || "Gast");
+          setGröße(data.größe || 177);
+          setGewicht(data.gewicht || 65);
+          setAlter(data.alter || 23);
+          setGeschlecht(data.geschlecht || "Frau");
+          setBmi(data.bmi || 27);
+        } catch (error) {
+          console.error("Fehler beim Abrufen der Schlaf-Daten:", error); 
+        }
+      };
+    
+      fetchData(); 
+    }, []); 
 
   async function setDaten() {
     setBearbeitenIsClicked(false);
@@ -40,11 +44,11 @@ export default function Konto() {
   }
 
   useEffect(() => {
-    setBmi((gewicht/größe).toFixed(2));
+    setBmi(((gewicht/größe)*100).toFixed());
   },[größe || gewicht])
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Fehler: {error.message}</p>;
+  //if (isLoading) return <p>Loading...</p>;
+  //if (error) return <p>Fehler: {error.message}</p>;
 
   return (
     <div className="konto-layout">

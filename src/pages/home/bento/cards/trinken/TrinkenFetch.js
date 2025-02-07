@@ -3,8 +3,11 @@ import { parse, format } from "date-fns";
 class TrinkenFetch {
 
     async getTrinkenDaten(heute){
+        console.log(heute + "heute")
         const parsedDate = parse(heute, "d.M.yyyy", new Date());
+        console.log(parsedDate + "parsedDate")
         const formattedDate = format(parsedDate, "yyyy-MM-dd");
+        console.log(formattedDate + "formattedDate")
 
         const response = await fetch(`http://localhost:8080/trinken/${formattedDate}`);
         if (!response.ok) {

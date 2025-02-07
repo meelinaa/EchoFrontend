@@ -19,6 +19,7 @@ class SchlafFetch {
             throw new Error('Fehler: ungültiger oder fehlender Parameter');
         }
         try {
+            const formattedTime = format(parse(schlafenszeit, "HH:mm", new Date()), "HH:mm:ss");
             const parsedDate = parse(datum, "d.M.yyyy", new Date());
             const formattedDate = format(parsedDate, "yyyy-MM-dd");
 
@@ -30,7 +31,7 @@ class SchlafFetch {
                 },
                 body: JSON.stringify({
                     datum: formattedDate,
-                    schlafenszeit: schlafenszeit,
+                    schlafenszeit: formattedTime,
                     benutzer: { id: 1 }
                 }),
             });
