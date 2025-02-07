@@ -6,14 +6,17 @@ import TraumAnalyse from './analyseDaten/traum/TraumAnalyse'
 import SchritteAnalyse from './analyseDaten/schritte/SchritteAnalyse'
 import SportAnalyse from './analyseDaten/sport/SportAnalyse'
 
+import './DatenAnalyse.css';
+
+
 export default function DatenAnalyse() {
   return (
-    <div className="analyse-layout">
-        <div className="analyse-top">
+    <div className="datenAnalyse-layout">
+        <div className="datenAnalyse-top">
             <h1>Analyse</h1>
         </div>
 
-        <div className="analyse-mitte">
+        <div className="datenAnalyse-mitte">
             <TrinkenAnalyse/>
             <GedankenAnalyse/>
             <SchlafAnalyse/>

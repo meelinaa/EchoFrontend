@@ -1,0 +1,62 @@
+.datenAnalyse-layout{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.analyse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.analyse-top{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.analyse-mitte{
+    display: flex;
+    flex-direction: column;
+    width: 100%;   
+}
+
+.analyse-mitte table {
+    width: 100%; 
+    border-radius: 8px; 
+    border-collapse: collapse; 
+    table-layout: fixed;
+    background-color: #f0f8ff; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.analyse-mitte th, .analyse-mitte td {
+    padding: 10px; 
+    text-align: left; 
+    word-wrap: break-word; 
+    word-break: break-word; 
+    max-width: 50%; 
+}
+ 
+.analyse-mitte th {
+    font-weight: bold; 
+    background-color: #e6f2ff; 
+}
+  
+.analyse-mitte td {
+    vertical-align: top;
+}
+  
+.analyse-mitte tr td:last-child, .analyse-mitte tr th:last-child  {
+    text-align: right; 
+}
+  
+.analyse-mitte tr td:not(:last-child), .analyse-mitte tr th:not(:last-child) {
+    text-align: left; 
+}

@@ -6,6 +6,8 @@ export default function SchlafAnalyse() {
     const analyseFetch = new AnalyseFetch();
     const info = "schlaf";
 
+    const [isOpen, setIsOpen] = useState(false);
+
     const [daten, setDaten] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -41,7 +43,7 @@ export default function SchlafAnalyse() {
             Schlafen
         </div>
         <div className="analyse-mitte">
-        <table border="1">
+            <table onClick={() => setIsOpen(state => !state)}>
                 <thead>
                     <tr>
                         <th>Datum</th>
@@ -49,7 +51,7 @@ export default function SchlafAnalyse() {
                     </tr>
                 </thead>
                 <tbody>
-                    {daten.map((eintrag) => (
+                    {isOpen && daten.map((eintrag) => (
                         <tr key={eintrag.id}>
                             <td>{convertDatum(eintrag.datum)}</td>
                             <td>{eintrag.schlafenszeit ?? "00:00"}</td>

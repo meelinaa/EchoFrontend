@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import AnalyseFetch from '../AnalyseFetch'
 
+import '../../DatenAnalyse.css';
+
+
 export default function TrinkenAnalyse() {
 
     const analyseFetch = new AnalyseFetch();
     const info = "trinken";
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const [daten, setDaten] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +46,7 @@ export default function TrinkenAnalyse() {
             Trinken
         </div>
         <div className="analyse-mitte">
-        <table border="1">
+            <table onClick={() => setIsOpen(state => !state) }>
                 <thead>
                     <tr>
                         <th>Datum</th>
@@ -50,7 +55,7 @@ export default function TrinkenAnalyse() {
                     </tr>
                 </thead>
                 <tbody>
-                    {daten.map((eintrag) => (
+                    {isOpen && daten.map((eintrag) => (
                         <tr key={eintrag.id}>
                             <td>{convertDatum(eintrag.datum)}</td>
                             <td>{eintrag.becher ?? "0"}</td>
