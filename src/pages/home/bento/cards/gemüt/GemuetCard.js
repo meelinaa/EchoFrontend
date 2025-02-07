@@ -3,6 +3,7 @@ import React from 'react'
 import '../card.css';
 import './Gemut.css';
 
+// Erstmal ausgesetzt
 export default function GemuetCard() {
   return (
     <div className="card gemut-layout">

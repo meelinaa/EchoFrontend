@@ -1,7 +1,12 @@
+import { parse, format } from "date-fns";
+
 class TraumFetch {
     
     async getTraumDaten(heute){
-        const response = await fetch(`http://localhost:8080/traum/${heute}`);
+        const parsedDate = parse(heute, "d.M.yyyy", new Date());
+        const formattedDate = format(parsedDate, "yyyy-MM-dd");
+
+        const response = await fetch(`http://localhost:8080/traum/${formattedDate}`);
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Daten: ${response.statusText}`);
         }
@@ -13,6 +18,9 @@ class TraumFetch {
             throw new Error('Fehler: ungültiger oder fehlender Parameter');
         }
         try {
+            const parsedDate = parse(datum, "d.M.yyyy", new Date());
+            const formattedDate = format(parsedDate, "yyyy-MM-dd");
+
             const response = await fetch(`http://localhost:8080/traum/hinzufügen`, {
                 method: "PUT",
                 headers: {
@@ -20,9 +28,10 @@ class TraumFetch {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    datum: datum,
+                    datum: formattedDate,
                     bewertung: bewertung,
                     traum: traum,
+                    benutzer: { id: 1 }
                 }),
             });
     

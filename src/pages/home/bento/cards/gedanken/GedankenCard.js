@@ -15,7 +15,8 @@ export default function GedankenCard() {
   const [gedanken, setGedanken] = useState("Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus consequatur et ipsa magni, modi consectetur reiciendis velit nam, assumenda autem ipsam neque voluptatum minima similique quam quos eum ullam necessitatibus?");
 
   const { data, error, isLoading } = useQuery(["daten", heute], () => gedankenFetch.getGedankenDaten(heute), {refetchOnWindowFocus: false});
-    useEffect(() => {
+  
+  useEffect(() => {
       if (data) {
         setGedanken(data.gedanken || "Deine Gedanken");
       }

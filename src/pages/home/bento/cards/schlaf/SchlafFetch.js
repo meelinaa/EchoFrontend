@@ -1,7 +1,12 @@
+import { parse, format } from "date-fns";
+
 class SchlafFetch {
 
     async getSchlafDaten(heute){
-        const response = await fetch(`http://localhost:8080/schlaf/${heute}`);
+        const parsedDate = parse(heute, "d.M.yyyy", new Date());
+        const formattedDate = format(parsedDate, "yyyy-MM-dd");
+
+        const response = await fetch(`http://localhost:8080/schlaf/${formattedDate}`);
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Daten: ${response.statusText}`);
         }
@@ -14,6 +19,9 @@ class SchlafFetch {
             throw new Error('Fehler: ungültiger oder fehlender Parameter');
         }
         try {
+            const parsedDate = parse(datum, "d.M.yyyy", new Date());
+            const formattedDate = format(parsedDate, "yyyy-MM-dd");
+
             const response = await fetch(`http://localhost:8080/sport/hinzufügen`, {
                 method: "PUT",
                 headers: {
@@ -21,8 +29,9 @@ class SchlafFetch {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    datum: datum,
+                    datum: formattedDate,
                     schlafenszeit: schlafenszeit,
+                    benutzer: { id: 1 }
                 }),
             });
     

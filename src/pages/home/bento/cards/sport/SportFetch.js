@@ -1,7 +1,12 @@
+import { parse, format } from "date-fns";
+
 class SportFetch {
 
-    async getSportDaten(heute){
-        const response = await fetch(`http://localhost:8080/sport/${heute}`);
+    async getSportDaten(datum){
+        const parsedDate = parse(datum, "d.M.yyyy", new Date());
+        const formattedDate = format(parsedDate, "yyyy-MM-dd");
+        
+        const response = await fetch(`http://localhost:8080/sport/${formattedDate}`);
         if (!response.ok) {
             throw new Error(`Fehler beim Abrufen der Daten: ${response.statusText}`);
         }
@@ -13,6 +18,9 @@ class SportFetch {
             throw new Error('Fehler: ungültiger oder fehlender Parameter');
         }
         try {
+            const parsedDate = parse(datum, "d.M.yyyy", new Date());
+            const formattedDate = format(parsedDate, "yyyy-MM-dd");
+
             const response = await fetch(`http://localhost:8080/sport/hinzufügen`, {
                 method: "PUT",
                 headers: {
@@ -20,9 +28,10 @@ class SportFetch {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    datum: datum,
+                    datum: formattedDate,
                     trainingsDauer: trainingsDauer,
                     sportart: sportart,
+                    benutzer: { id: 1 },
                 }),
             });
     
@@ -34,10 +43,12 @@ class SportFetch {
             console.log("Daten erfolgreich gespeichert:", data);
             return data;
         } catch (error) {
-            console.error("Fehler bei der Daten:", error);
+            console.error("Fehler bei den Daten:", error);
             throw error; 
         }
     }
+
+    
 }
 
 export default SportFetch;
