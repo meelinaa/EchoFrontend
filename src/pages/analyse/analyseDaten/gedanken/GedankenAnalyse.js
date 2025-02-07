@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import AnalyseFetch from '../AnalyseFetch'
 
-export default function TrinkenAnalyse() {
+export default function GedankenAnalyse() {
 
     const analyseFetch = new AnalyseFetch();
-    const info = "trinken";
+    const info = "gedanken";
 
     const [daten, setDaten] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -38,23 +38,21 @@ export default function TrinkenAnalyse() {
   return (
     <div className="analyse">
         <div className="analyse-top">
-            Trinken
+            Gedanken
         </div>
         <div className="analyse-mitte">
         <table border="1">
                 <thead>
                     <tr>
                         <th>Datum</th>
-                        <th>Becher</th>
-                        <th>Liter</th>
+                        <th>Gedanken</th>
                     </tr>
                 </thead>
                 <tbody>
                     {daten.map((eintrag) => (
                         <tr key={eintrag.id}>
                             <td>{convertDatum(eintrag.datum)}</td>
-                            <td>{eintrag.becher ?? "0"}</td>
-                            <td>{eintrag.liter}</td>
+                            <td>{eintrag.gedanken ?? ""}</td>
                         </tr>
                     ))}
                 </tbody>
