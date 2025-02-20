@@ -18,11 +18,11 @@ export default function DatenAnalyse() {
 
         <div className="datenAnalyse-mitte">
             <TrinkenAnalyse/>
+            <TraumAnalyse/>
+            <SportAnalyse/>
+            <SchritteAnalyse/>
             <GedankenAnalyse/>
             <SchlafAnalyse/>
-            <TraumAnalyse/>
-            <SchritteAnalyse/>
-            <SportAnalyse/>
         </div>
     </div>
   )
