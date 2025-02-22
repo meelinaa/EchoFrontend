@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import AnalyseFetch from '../AnalyseFetch'
 import SportAnalyseFetch from './SportAnalyseFetch'
 
-
 import '../../DatenAnalyse.css';
 
 export default function SportAnalyse() {
